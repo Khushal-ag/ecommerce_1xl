@@ -1,0 +1,7 @@
+version: "3.7"
+
+services:
+  server:
+    image: ecommecrce_1xl
+    ports:
+      - "${PORT}:3000"
