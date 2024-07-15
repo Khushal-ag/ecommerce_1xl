@@ -1,4 +1,3 @@
-import type { NewUser } from "@/lib/types";
 import { model, Schema } from "mongoose";
 
 const UserSchema = new Schema({
@@ -22,6 +21,13 @@ const UserSchema = new Schema({
   },
 });
 
-export const User = model("User", UserSchema);
+const AdminSchema = new Schema({
+  userId: {
+    type: Schema.Types.ObjectId,
+    ref: "User",
+    required: true,
+  },
+});
 
-export type User = NewUser;
+export const User = model("User", UserSchema);
+export const Admin = model("Admin", AdminSchema);

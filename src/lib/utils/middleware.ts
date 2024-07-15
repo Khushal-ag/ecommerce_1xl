@@ -1,7 +1,8 @@
 import type { Request, Response, NextFunction } from "express";
 import jwt from "jsonwebtoken";
 import dotenv from "dotenv";
-import { User } from "./user.model";
+import { User } from "../../models/user.model";
+import type { AppError } from "./appError";
 
 dotenv.config();
 
@@ -50,4 +51,19 @@ export const isAdmin = async (
   } catch (error) {
     return res.status(401).json({ message: "Unauthorized" });
   }
+};
+
+export const errorHandler = (
+  err: AppError,
+  req: Request,
+  res: Response,
+  next: NextFunction,
+) => {
+  err.statusCode = err.statusCode || 500;
+  err.status = err.status || "error";
+
+  res.status(err.statusCode).json({
+    status: err.status,
+    message: err.message,
+  });
 };
