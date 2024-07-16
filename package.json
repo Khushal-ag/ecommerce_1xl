@@ -2,7 +2,7 @@
   "name": "ecommerce_1xl",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "index.ts",
   "module": "",
   "keywords": [],
   "author": "Khushal-ag",
