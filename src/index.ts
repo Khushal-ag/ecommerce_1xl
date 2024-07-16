@@ -8,6 +8,7 @@ import { product } from "./routes/product.route";
 import { category } from "./routes/category.route";
 import { errorHandler } from "./lib/utils/middleware";
 import { cart } from "./routes/cart.route";
+import { order } from "./routes/order.route";
 
 env.config();
 const app = express();
@@ -23,6 +24,7 @@ app.use("/auth", auth);
 app.use("/products", product);
 app.use("/category", category);
 app.use("/cart", cart);
+app.use("/order", order);
 
 app.listen(PORT, () => {
   console.log(`Server started on http://localhost:${PORT}`);
