@@ -1,7 +1,7 @@
 import jwt from "jsonwebtoken";
 import bcrypt from "bcryptjs";
 import env from "dotenv";
-import type { NextFunction, Request, Response } from "express";
+import type { CookieOptions, NextFunction, Request, Response } from "express";
 import { AppError } from "../lib/utils/appError";
 import { asyncHandler } from "../lib/utils/asyncHandler";
 import { connectToDatabase } from "../lib/config/db";
@@ -74,7 +74,7 @@ export const LoginUser = asyncHandler(
     const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET!, {
       expiresIn: "1d",
     });
-    const cookieOptions = {
+    const cookieOptions: CookieOptions = {
       expires: new Date(Date.now() + 1 * 24 * 60 * 60 * 1000), // 1 day
       httpOnly: true,
     };

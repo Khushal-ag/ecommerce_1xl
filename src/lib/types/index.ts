@@ -1,3 +1,5 @@
+import { Document, Schema } from "mongoose";
+
 export type UserType = {
   id: string;
   name: string;
@@ -20,3 +22,10 @@ export type CategoryType = {
   title: string;
   slug: string;
 };
+
+export interface UserDocument extends Document {
+  name: string;
+  email: string;
+  password: string;
+  admin: boolean;
+}

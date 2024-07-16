@@ -16,10 +16,27 @@ export const isAuthenticated = async (
   next: NextFunction,
 ) => {
   const token = req.cookies.access_token;
+
   if (!token) {
     return res.status(401).json({ message: "Unauthorized" });
   }
-  next();
+
+  try {
+    const decoded = jwt.verify(
+      token,
+      process.env.JWT_SECRET as string,
+    ) as Decoded;
+    const user = await User.findById(decoded.id).select("-password");
+
+    if (!user) {
+      return res.status(401).json({ message: "Unauthorized" });
+    }
+
+    req.user = user; // Make sure to define user in Request type
+    next();
+  } catch (error) {
+    return res.status(401).json({ message: "Unauthorized" });
+  }
 };
 
 export const isAdmin = async (

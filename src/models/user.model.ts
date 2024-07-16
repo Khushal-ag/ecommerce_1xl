@@ -1,6 +1,7 @@
+import type { UserDocument } from "../lib/types";
 import { model, Schema } from "mongoose";
 
-const UserSchema = new Schema({
+const UserSchema = new Schema<UserDocument>({
   name: {
     type: String,
     required: true,
