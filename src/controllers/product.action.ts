@@ -97,3 +97,28 @@ export const filterProducts = asyncHandler(
     res.status(200).json({ data: products });
   },
 );
+
+export const updateProduct = async (req: Request, res: Response) => {
+  const { productId } = req.params; // Get the product ID from the route parameters
+  const updatedData = req.body; // Get the updated data from the request body
+
+  try {
+    // Find the product by its ID and update it with the new data
+    const updatedProduct = await Product.findByIdAndUpdate(
+      productId,
+      updatedData,
+      { new: true },
+    );
+
+    if (!updatedProduct) {
+      return res.status(404).json({ message: "Product not found" }); // If product not found, send 404 response
+    }
+
+    res.status(200).json({
+      message: "Product updated successfully",
+      product: updatedProduct,
+    }); // Send a success response
+  } catch (error) {
+    res.status(500).json({ message: "Server error", error }); // Send a server error response in case of failure
+  }
+};
