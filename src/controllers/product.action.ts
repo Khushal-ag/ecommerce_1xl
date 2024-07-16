@@ -1,9 +1,9 @@
-import { products } from "@/data";
-import { connectToDatabase } from "@/lib/config/db";
-import { AppError } from "@/lib/utils/appError";
-import { asyncHandler } from "@/lib/utils/asyncHandler";
-import { Category } from "@/models/category.model";
-import { Product } from "@/models/product.model";
+import { products } from "../data";
+import { connectToDatabase } from "../lib/config/db";
+import { AppError } from "../lib/utils/appError";
+import { asyncHandler } from "../lib/utils/asyncHandler";
+import { Category } from "../models/category.model";
+import { Product } from "../models/product.model";
 import type { Request, Response, NextFunction } from "express";
 
 export const uploadProducts = asyncHandler(

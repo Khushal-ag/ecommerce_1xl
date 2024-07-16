@@ -1,11 +1,11 @@
 import jwt from "jsonwebtoken";
-import bcrypt from "bcrypt";
+import bcrypt from "bcryptjs";
 import env from "dotenv";
 import type { NextFunction, Request, Response } from "express";
-import { AppError } from "@/lib/utils/appError";
-import { asyncHandler } from "@/lib/utils/asyncHandler";
-import { connectToDatabase } from "@/lib/config/db";
-import { Admin, User } from "@/models/user.model";
+import { AppError } from "../lib/utils/appError";
+import { asyncHandler } from "../lib/utils/asyncHandler";
+import { connectToDatabase } from "../lib/config/db";
+import { Admin, User } from "../models/user.model";
 env.config();
 
 export const RegisterUser = asyncHandler(

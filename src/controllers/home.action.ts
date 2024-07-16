@@ -1,4 +1,4 @@
-import { asyncHandler } from "@/lib/utils/asyncHandler";
+import { asyncHandler } from "../lib/utils/asyncHandler";
 import type { Request, Response } from "express";
 
 export const getRouteList = asyncHandler(
